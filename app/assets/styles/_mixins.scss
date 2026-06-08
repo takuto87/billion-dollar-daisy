@@ -1,0 +1,117 @@
+// ミックスイン（変数は nuxt.config.ts の additionalData で自動インポート）
+
+// レスポンシブブレークポイント
+$breakpoints: (
+  'sm': 640px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1280px,
+  '2xl': 1536px,
+);
+
+@mixin respond-to($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+  @if $value != null {
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-below($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+  @if $value != null {
+    @media (max-width: #{$value - 1px}) {
+      @content;
+    }
+  }
+}
+
+// フレックスセンター
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// グラスモーフィズム
+@mixin glassmorphism($bg: $glass-bg, $blur: $glass-blur) {
+  background: $bg;
+  backdrop-filter: $blur;
+  -webkit-backdrop-filter: $blur;
+  border: 1px solid $glass-border;
+}
+
+// カードスタイル
+@mixin card($padding: $spacing-lg) {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $padding;
+  transition: border-color $transition-base, box-shadow $transition-base;
+
+  &:hover {
+    border-color: $color-border-hover;
+    box-shadow: $shadow-glow;
+  }
+}
+
+// グラデーションテキスト
+@mixin gradient-text($gradient: $color-accent-gradient) {
+  background: $gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// スクロールバースタイル
+@mixin custom-scrollbar($width: 6px) {
+  scrollbar-width: thin;
+  scrollbar-color: $color-accent-primary transparent;
+
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color-accent-primary;
+    border-radius: $radius-full;
+
+    &:hover {
+      background: $color-accent-secondary;
+    }
+  }
+}
+
+// テキスト省略
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// アニメーション
+@mixin fade-in($duration: 0.3s, $delay: 0s) {
+  animation: fadeIn $duration ease $delay both;
+}
+
+@mixin slide-up($duration: 0.4s, $delay: 0s) {
+  animation: slideUp $duration ease $delay both;
+}

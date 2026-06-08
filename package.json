@@ -1,0 +1,23 @@
+{
+  "name": "billion-dollar-daisy",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "TMPDIR=/tmp nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "typecheck": "nuxt typecheck",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@nuxtjs/i18n": "^10.4.0",
+    "nuxt": "^4.4.7",
+    "sass": "^1.100.0",
+    "typescript": "^6.0.3",
+    "vue": "^3.5.35",
+    "vue-router": "^5.1.0",
+    "vue-tsc": "^3.3.3"
+  }
+}
